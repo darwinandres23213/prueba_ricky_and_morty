@@ -1,0 +1,7 @@
+FROM golang:1.21-alpine
+WORKDIR /app
+COPY . .
+RUN go mod tidy
+RUN cd cmd/gateway && go build -o /gateway_service
+EXPOSE 8080
+CMD ["/gateway_service"] 

@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    ports:
+      - "8081:8081"
+    environment:
+      - JWT_SECRET=supersecret
+      - AUTH_SERVICE_PORT=8081
+      - COOKIE_NAME=auth_token
+    volumes:
+      - auth_db:/app/data
+    command: sh -c "rm -f /app/data/users.db && /auth_service"
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - GATEWAY_SERVICE_PORT=8080
+      - AUTH_SERVICE_PORT=8081
+      - RICKMORTY_SERVICE_PORT=8082
+    depends_on:
+      - auth
+      - rickmorty
+  rickmorty:
+    build:
+      context: .
+      dockerfile: Dockerfile.rickmorty
+    ports:
+      - "8082:8082"
+    environment:
+      - RICKMORTY_SERVICE_PORT=8082
+
+volumes:
+  auth_db:
+    driver: local 

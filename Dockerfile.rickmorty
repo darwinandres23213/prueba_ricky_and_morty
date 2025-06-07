@@ -1,0 +1,7 @@
+FROM golang:1.21-alpine
+WORKDIR /app
+COPY . .
+RUN go mod tidy
+RUN cd cmd/rickmorty && go build -o /rickmorty_service
+EXPOSE 8082
+CMD ["/rickmorty_service"] 

@@ -1,0 +1,9 @@
+FROM golang:1.21
+WORKDIR /app
+RUN rm -rf /app/users.db
+COPY . .
+RUN go mod tidy
+ENV CGO_ENABLED=1
+RUN cd cmd/auth && go build -o /auth_service
+EXPOSE 8081
+CMD ["/auth_service"] 
