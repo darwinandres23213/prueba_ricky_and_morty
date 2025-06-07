@@ -97,7 +97,7 @@ Este proyecto implementa un API Gateway para la API de Rick and Morty con autent
 3. **Probar Endpoints** (Solo después de los pasos anteriores)
    ```
    GET http://localhost:8080/api/v1/characters
-   GET http://localhost:8080/api/v1/character/1
+   GET http://localhost:8080/api/v1/character?page=2
    GET http://localhost:8080/api/v1/locations
    GET http://localhost:8080/api/v1/episodes
    ```
@@ -189,7 +189,7 @@ Si intentas acceder a cualquier endpoint sin completar los pasos obligatorios, r
    Todas las peticiones al Gateway usarán automáticamente la cookie guardada:
    ```
    GET http://localhost:8080/api/v1/characters
-   GET http://localhost:8080/api/v1/character/1
+   GET http://localhost:8080/api/v1/character?page=2
    GET http://localhost:8080/api/v1/locations
    GET http://localhost:8080/api/v1/episodes
    ```
