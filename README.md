@@ -32,6 +32,112 @@ Este proyecto implementa un API Gateway para la API de Rick and Morty con autent
    - Gateway: http://localhost:8080
    - Rick and Morty Service: http://localhost:8082 (no accesible directamente)
 
+## 🚨 REQUISITO OBLIGATORIO: Autenticación
+
+**IMPORTANTE**: Para usar CUALQUIER endpoint de la API (excepto registro y login), es OBLIGATORIO:
+1. Registrarse primero
+2. Hacer login para obtener el token
+3. Usar el token en todas las peticiones subsiguientes
+
+### Pasos Obligatorios en Orden:
+
+1. **Registro** (OBLIGATORIO como primer paso)
+   ```
+   POST http://localhost:8081/api/v1/register
+   ```
+   - Sin registro no podrás usar la API
+   - Necesitas crear una cuenta antes de hacer login
+
+2. **Login** (OBLIGATORIO como segundo paso)
+   ```
+   POST http://localhost:8081/api/v1/login
+   ```
+   - Sin login no obtendrás el token
+   - Sin token no podrás acceder a ningún otro endpoint
+
+3. **Uso de la API** (Solo después de registro y login)
+   ```
+   GET http://localhost:8080/api/v1/characters
+   GET http://localhost:8080/api/v1/locations
+   GET http://localhost:8080/api/v1/episodes
+   ```
+   - Todas estas peticiones fallarán si no has completado los pasos 1 y 2
+
+### Ejemplo de Flujo Completo en Postman
+
+1. **Registro** (OBLIGATORIO)
+   ```
+   POST http://localhost:8081/api/v1/register
+   Headers:
+   Content-Type: application/json
+
+   Body:
+   {
+       "username": "usuario1",
+       "password": "contraseña123"
+   }
+   ```
+   - Guarda la respuesta para verificar que el registro fue exitoso
+
+2. **Login** (OBLIGATORIO)
+   ```
+   POST http://localhost:8081/api/v1/login
+   Headers:
+   Content-Type: application/json
+
+   Body:
+   {
+       "username": "usuario1",
+       "password": "contraseña123"
+   }
+   ```
+   - Postman guardará automáticamente la cookie con el token
+   - Sin este paso, todas las demás peticiones fallarán
+
+3. **Probar Endpoints** (Solo después de los pasos anteriores)
+   ```
+   GET http://localhost:8080/api/v1/characters
+   GET http://localhost:8080/api/v1/character/1
+   GET http://localhost:8080/api/v1/locations
+   GET http://localhost:8080/api/v1/episodes
+   ```
+   - Estas peticiones solo funcionarán si tienes un token válido
+   - El token se envía automáticamente en la cookie
+
+### Errores Comunes
+
+Si intentas acceder a cualquier endpoint sin completar los pasos obligatorios, recibirás:
+
+1. **Sin Registro/Login**:
+   ```json
+   {
+       "status": "error",
+       "message": "Token no encontrado"
+   }
+   ```
+
+2. **Token Expirado**:
+   ```json
+   {
+       "status": "error",
+       "message": "Token expirado por uso máximo alcanzado"
+   }
+   ```
+
+3. **Token Inválido**:
+   ```json
+   {
+       "status": "error",
+       "message": "Token inválido"
+   }
+   ```
+
+### Recordatorio
+- ❌ No puedes saltarte el registro
+- ❌ No puedes saltarte el login
+- ❌ No puedes acceder a ningún endpoint sin token
+- ✅ Debes seguir el orden: Registro → Login → Uso de la API
+
 ## 🛠️ Probando la API
 
 **IMPORTANTE**: Se recomienda usar Postman o una herramienta similar para probar la API, ya que:
