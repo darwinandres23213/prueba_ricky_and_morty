@@ -85,7 +85,7 @@ services:
 
 #### Registro
 ```
-POST /api/v1/register
+POST http://localhost:8081/api/v1/register
 Body: {
     "username": string,
     "password": string
@@ -94,7 +94,7 @@ Body: {
 
 #### Login
 ```
-POST /api/v1/login
+POST http://localhost:8081/api/v1/login
 Body: {
     "username": string,
     "password": string
@@ -103,7 +103,7 @@ Body: {
 
 #### Validar Token
 ```
-GET /api/v1/validate
+GET http://localhost:8080/api/v1/validate
 (Requiere cookie con token JWT)
 ```
 
@@ -112,26 +112,26 @@ Todos los endpoints requieren autenticación (cookie con token JWT)
 
 #### Personajes
 ```
-GET /api/v1/character
-GET /api/v1/characters
-GET /api/v1/character/{id}
-GET /api/v1/character?page=2
+GET http://localhost:8080/api/v1/character
+GET http://localhost:8080/api/v1/characters
+GET http://localhost:8080/api/v1/character/{id}
+GET http://localhost:8080/api/v1/character?page=2
 ```
 
 #### Ubicaciones
 ```
-GET /api/v1/location
-GET /api/v1/locations
-GET /api/v1/location/{id}
-GET /api/v1/location?page=2
+GET http://localhost:8080/api/v1/location
+GET http://localhost:8080/api/v1/locations
+GET http://localhost:8080/api/v1/location/{id}
+GET http://localhost:8080/api/v1/location?page=2
 ```
 
 #### Episodios
 ```
-GET /api/v1/episode
-GET /api/v1/episodes
-GET /api/v1/episode/{id}
-GET /api/v1/episode?page=2
+GET http://localhost:8080/api/v1/episode
+GET http://localhost:8080/api/v1/episodes
+GET http://localhost:8080/api/v1/episode/{id}
+GET http://localhost:8080/api/v1/episode?page=2
 ```
 
 ### 3. Servicio Rick and Morty (8082)
@@ -139,26 +139,26 @@ Estos endpoints NO requieren autenticación
 
 #### Personajes
 ```
-GET /api/v1/character
-GET /api/v1/characters
-GET /api/v1/character/{id}
-GET /api/v1/character?page=2
+GET http://localhost:8080/api/v1/character
+GET http://localhost:8080/api/v1/characters
+GET http://localhost:8080/api/v1/character/{id}
+GET http://localhost:8080/api/v1/character?page=2
 ```
 
 #### Ubicaciones
 ```
-GET /api/v1/location
-GET /api/v1/locations
-GET /api/v1/location/{id}
-GET /api/v1/location?page=2
+GET http://localhost:8080/api/v1/location
+GET http://localhost:8080/api/v1/locations
+GET http://localhost:8080/api/v1/location/{id}
+GET http://localhost:8080/api/v1/location?page=2
 ```
 
 #### Episodios
 ```
-GET /api/v1/episode
-GET /api/v1/episodes
-GET /api/v1/episode/{id}
-GET /api/v1/episode?page=2
+GET http://localhost:8080/api/v1/episode
+GET http://localhost:8080/api/v1/episodes
+GET http://localhost:8080/api/v1/episode/{id}
+GET http://localhost:8080/api/v1/episode?page=2
 ```
 
 ## Formato de Respuestas
