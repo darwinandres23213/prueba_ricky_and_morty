@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   auth:
     build:
@@ -13,6 +12,7 @@ services:
     volumes:
       - auth_db:/app/data
     command: sh -c "rm -f /app/data/users.db && /auth_service"
+
   gateway:
     build:
       context: .
@@ -26,6 +26,7 @@ services:
     depends_on:
       - auth
       - rickmorty
+
   rickmorty:
     build:
       context: .
@@ -37,4 +38,4 @@ services:
 
 volumes:
   auth_db:
-    driver: local 
+    driver: local
